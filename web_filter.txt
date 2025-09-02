@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    
+    <meta charset="UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>
+      Erişim Kısıtlandı - Güvenlik Uyarısı
+    </title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+      :root {
+        --primary-color: #e74c3c;
+          /* Daha dikkat çekici bir kırmızı tonu */ --secondary-color: #2c3e50;
+          /* Koyu lacivert */ --background-start: #fdfbfb;
+          --background-end: #ebedee;
+          --card-background: #ffffff;
+          --text-color: #333;
+          --light-text-color: #6a6a6a;
+          --border-color: #e0e0e0;
+          --shadow-light: 0 5px 20px rgba(0, 0, 0, 0.08);
+          --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.15);
+          /* Yeni değişken: Kırmızı gölge rengi */ --red-shadow-color: rgba(231, 76, 60, 0.4);
+        }
+        body {
+          font-family: 'Poppins', sans-serif;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+          background: linear-gradient(135deg, var(--background-start), var(--background-end));
+          color: var(--text-color);
+          overflow: hidden;
+        }
+        .container {
+          background-color: var(--card-background);
+          border-radius: 20px;
+          /* Mevcut box-shadow'a kırmızı gölge eklendi */ box-shadow: var(--shadow-light), 0 0 30px var(--red-shadow-color);
+          padding: 50px;
+          max-width: 700px;
+          width: 90%;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+          transform: translateY(0);
+          transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+          z-index: 10;
+        }
+        .container::before {
+          content: '';
+          position: absolute;
+          top: -2px;
+          left: -2px;
+          right: -2px;
+          bottom: -2px;
+          border: 2px solid transparent;
+          border-radius: 22px;
+          animation: border-animate 6s linear infinite;
+          z-index: -1;
+        }
+        @keyframes border-animate {
+          0% {
+            border-color: transparent transparent transparent var(--primary-color);
+          }
+          25% {
+            border-color: var(--primary-color) transparent transparent transparent;
+          }
+          50% {
+            border-color: var(--primary-color) var(--primary-color) transparent transparent;
+          }
+          75% {
+            border-color: var(--primary-color) var(--primary-color) var(--primary-color) transparent;
+          }
+          100% {
+            border-color: var(--primary-color) var(--primary-color) var(--primary-color) var(--primary-color);
+          }
+        }
+        .container:hover {
+          /* Hover durumundaki gölge de güncellendi */ box-shadow: var(--shadow-hover), 0 0 40px var(--red-shadow-color);
+        }
+        .background-elements {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+          overflow: hidden;
+          z-index: 1;
+        }
+        .element {
+          position: absolute;
+          background-color: rgba(var(--primary-color-rgb, 231, 76, 60), 0.1);
+          border-radius: 50%;
+          opacity: 0;
+          animation: floatAndFade 15s infinite ease-in-out;
+        }
+        .element:nth-child(1) {
+          width: 40px;
+          height: 40px;
+          top: 10%;
+          left: 15%;
+          animation-delay: 0s;
+        }
+        .element:nth-child(2) {
+          width: 60px;
+          height: 60px;
+          top: 40%;
+          left: 80%;
+          animation-delay: 2s;
+        }
+        .element:nth-child(3) {
+          width: 30px;
+          height: 30px;
+          top: 70%;
+          left: 25%;
+          animation-delay: 4s;
+        }
+        .element:nth-child(4) {
+          width: 50px;
+          height: 50px;
+          top: 20%;
+          left: 60%;
+          animation-delay: 6s;
+        }
+        .element:nth-child(5) {
+          width: 70px;
+          height: 70px;
+          top: 85%;
+          left: 50%;
+          animation-delay: 8s;
+        }
+        @keyframes floatAndFade {
+          0% {
+            transform: translateY(0) scale(0);
+            opacity: 0;
+          }
+          50% {
+            opacity: 0.5;
+          }
+          100% {
+            transform: translateY(-200px) scale(1.5);
+            opacity: 0;
+          }
+        }
+        .main-icon {
+          font-size: 5rem;
+          margin-bottom: 20px;
+          color: var(--primary-color);
+          animation: pulse 1.5s infinite alternate ease-in-out, rotate-fade 3s infinite;
+          display: inline-block;
+        }
+        @keyframes pulse {
+          from {
+            transform: scale(1);
+            opacity: 1;
+          }
+          to {
+            transform: scale(1.1);
+            opacity: 0.8;
+          }
+        }
+        @keyframes rotate-fade {
+          0% {
+            transform: rotate(0deg);
+            opacity: 1;
+          }
+          25% {
+            transform: rotate(5deg);
+          }
+          50% {
+            transform: rotate(-5deg);
+          }
+          75% {
+            transform: rotate(5deg);
+          }
+          100% {
+            transform: rotate(0deg);
+            opacity: 1;
+          }
+        }
+        h1 {
+          color: var(--secondary-color);
+          font-size: 2.5rem;
+          margin-bottom: 10px;
+          font-weight: 700;
+          letter-spacing: -1px;
+        }
+        h3 {
+          color: var(--primary-color);
+          font-size: 1.5rem;
+          margin-top: 0;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+        p {
+          font-size: 1.05rem;
+          line-height: 1.7;
+          color: var(--light-text-color);
+          margin-bottom: 30px;
+        }
+        .highlight {
+          font-weight: 700;
+          color: var(--secondary-color);
+          background-color: rgba(var(--primary-color-rgb, 231, 76, 60), 0.1);
+          padding: 3px 6px;
+          border-radius: 4px;
+        }
+        .info-table {
+          width: 100%;
+          margin: 30px 0;
+          border-collapse: separate;
+          border-spacing: 0 12px;
+          background-color: #f9f9f9;
+          border-radius: 10px;
+          padding: 20px;
+          box-shadow: inset 0 1px 5px rgba(0,0,0,0.05);
+        }
+        .info-table td {
+          padding: 12px 15px;
+          text-align: left;
+          border-bottom: 1px dashed var(--border-color);
+        }
+        .info-table tr:last-child td {
+          border-bottom: none;
+        }
+        .info-table td:first-child {
+          font-weight: 600;
+          color: var(--secondary-color);
+          width: 30%;
+          vertical-align: middle;
+        }
+        .info-table td:last-child {
+          word-break: break-all;
+          color: var(--light-text-color);
+        }
+        .action-area {
+          margin-top: 30px;
+        }
+        .re-evaluate-link {
+          display: inline-block;
+          background-color: var(--primary-color);
+          color: var(--secondary-color);
+          padding: 12px 25px;
+          border-radius: 50px;
+          text-decoration: none;
+          font-weight: 600;
+          transition: all 0.3s ease;
+          letter-spacing: 0.5px;
+          box-shadow: 0 4px 10px rgba(var(--primary-color-rgb, 231, 76, 60), 0.3);
+          border: 2px solid var(--primary-color);
+        }
+        .re-evaluate-link:hover {
+          background-color: var(--secondary-color);
+          color: var(--primary-color);
+          box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+          transform: translateY(-3px);
+          border-color: var(--secondary-color);
+        }
+        .override-text {
+          color: var(--primary-color);
+          font-weight: 700;
+          margin-top: 25px;
+          animation: slideInUp 0.7s ease-out forwards;
+          opacity: 0;
+          position: relative;
+          overflow: hidden;
+          padding: 10px;
+          border-radius: 8px;
+          background-color: rgba(var(--primary-color-rgb, 231, 76, 60), 0.05);
+        }
+        @keyframes slideInUp {
+          from {
+            transform: translateY(20px);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+        @media (max-width: 768px) {
+          .container {
+            padding: 30px;
+            width: 95%;
+          }
+          .container::before {
+            border-radius: 32px;
+          }
+          h1 {
+            font-size: 1.8rem;
+          }
+          h3 {
+            font-size: 1.2rem;
+          }
+          p {
+            font-size: 0.95rem;
+          }
+          .main-icon {
+            font-size: 4rem;
+          }
+          .info-table td {
+            padding: 8px 10px;
+            font-size: 0.9rem;
+          }
+          .re-evaluate-link {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+          }
+        }
+        @media (max-width: 480px) {
+          .container {
+            padding: 20px;
+          }
+          h1 {
+            font-size: 1.5rem;
+          }
+          h3 {
+            font-size: 1rem;
+          }
+          .info-table td:first-child {
+            width: 40%;
+          }
+        }
+        .tilt-effect {
+          will-change: transform;
+          transition: transform 0.1s ease-out;
+        }
+        
+    </style>
+  </head>
+  <body>
+    
+    <div class="background-elements">
+      
+      <div class="element">
+      </div>
+      
+      <div class="element">
+      </div>
+      
+      <div class="element">
+      </div>
+      
+      <div class="element">
+      </div>
+      
+      <div class="element">
+      </div>
+      
+    </div>
+    
+    <div class="container tilt-effect">
+      
+      <div class="main-icon" id="mainIcon">
+        🚫
+      </div>
+      
+      <h1>
+        Erişim Kısıtlandı!
+      </h1>
+      
+      <h3>
+        Erişim engeli bulunan URL tespit edildi.
+      </h3>
+      
+      <p>
+        Erişmeye çalıştığınız web sayfası, 
+        <span class="highlight">
+          X KURUMU
+        </span>
+        internet kullanım politikalarına uygun değildir ve erişimi engellenmiştir. Güvenliğiniz ve verimliliğiniz için bu tür sitelere erişim kısıtlanmıştır. 
+      </p>
+      
+      <div class="info-table">
+        
+        <table>
+          
+          <tbody>
+            
+            <tr>
+              
+              <td>
+                Kategori:
+              </td>
+              
+              <td>
+                %%CATEGORY%%
+              </td>
+              
+            </tr>
+            
+            <tr>
+              
+              <td>
+                Engellenen URL:
+              </td>
+              
+              <td>
+                %%PROTOCOL%%://%%URL%%
+              </td>
+              
+            </tr>
+            
+          </tbody>
+          
+        </table>
+        
+      </div>
+      
+      <div class="action-area">
+        
+        <p>
+          Bu engellemenin hatalı olduğunu düşünüyorsanız
+          <br>
+          
+          <span class="highlight">
+            X ŞUBE/BURO
+          </span>
+          ile iletişime geçiniz. 
+        </p>
+        
+      </div>
+      
+    </div>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const mainIcon = document.getElementById('mainIcon');
+        mainIcon.style.animation = 'pulse 1.5s infinite alternate ease-in-out, rotate-fade 3s infinite';
+        const rootStyle = getComputedStyle(document.documentElement);
+        const primaryColor = rootStyle.getPropertyValue('--primary-color');
+        const hexToRgb = (hex) => {
+        let r = 0, g = 0, b = 0;
+        if (hex.length === 4) {
+        r = "0x" + hex[1] + hex[1];
+        g = "0x" + hex[2] + hex[2];
+        b = "0x" + hex[3] + hex[3];
+      }
+                                else if (hex.length === 7) {
+        r = "0x" + hex[1] + hex[2];
+        g = "0x" + hex[3] + hex[4];
+        b = "0x" + hex[5] + hex[6];
+      }
+      return +r + "," + +g + "," + +b;
+      }
+      document.documentElement.style.setProperty('--primary-color-rgb', hexToRgb(primaryColor));
+      }
+      );
+      const container = document.querySelector('.tilt-effect');
+      if (container) {
+        container.addEventListener('mousemove', (e) => {
+          const {
+          clientX, clientY }
+                                   = e;
+                                   const {
+                                   left, top, width, height }
+                                   = container.getBoundingClientRect();
+        const centerX = left + width / 2;
+        const centerY = top + height / 2;
+        const rotateX = ((centerY - clientY) / height) * 20;
+        const rotateY = ((clientX - centerX) / width) * 20;
+        container.style.transform = `perspective(1000px) rotateX(${
+                                                                 rotateX}
+                                                                 deg) rotateY(${
+                                                                              rotateY}
+                                                                              deg) scale(1.01)`;
+      }
+      );
+      container.addEventListener('mouseleave', () => {
+        container.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+      }
+        );
+      }
+        
+    </script>
+  </body>
+</html>
